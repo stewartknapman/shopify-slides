@@ -1,0 +1,7 @@
+{
+  "name": "presentation-designing-the-commerce-experience-theming-for-shopify",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages"
+  }
+}
