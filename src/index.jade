@@ -12,51 +12,208 @@ html
     article
 
       section
-        h1 Designing the commerce experience - Theming for Shopify
-
+        h1 Designing the commerce experience
+        h2 Theming for Shopify
+        
       section
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
-
+        img(src='images/shopify_logo.png')
+        h3 A hosted e-commerce platform
+        
       section
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
-
+        h2 What makes Shopify so awesome?
+        
       section
-        h2 Responsive Slides
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
-
-      section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
-        ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
-
-      section
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
-        pre
-          code.language-javascript.
-            bespoke.from('article', [
-              classes(),
-              keys(),
-              touch(),
-              bullets('li, .bullet')
-            ]);
-
-      section
-        h2.bullet Just the beginning...
-        br
-        ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
-        br
+        h2 The app store
+        h3: a(href='https://apps.shopify.com/') apps.shopify.com/
         ul
           li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+          li Campaignified
+          li Landed
+          
+      section
+        h2 The theme store
+        h3: a(href='https://themes.shopify.com/') themes.shopify.com/
+        ul
+          li
+          li Checked before they are accepted.
+          li Can be sold for free.
+          li Or must be $80 &mdash; $180.
+          
+      section
+        h2 Building a theme
+        ul
+          li HTML, CSS &amp; JS
+          li +
+          li Liquid
+          
+      section
+        h2 Liquid templating language
+        h3 Created by Shopify
+        ul
+          li
+          li Also used by:
+          li: a(href="http://get.harmonyapp.com/") Harmony
+          li: a(href="http://locomotivecms.com/") LocomotiveCMS
+          li: a(href="http://www.siteleaf.com/") Siteleaf
+          
+      section
+        h3 Liquid example:
+        pre
+          code.language-markup.
+            {% if collection.products.size > 0 %}
+              {% for product in collection.products %}
+                &lt;h1&gt;{{ product.title }}&lt;/h1&gt;
+              {% endfor %}
+            {% endif %}
+            
+      section
+        h3 If statements:
+        pre
+          code.language-markup.
+            {% if moose %}
+              ...
+            {% elsif monkey %}
+              ...
+            {% endif %}
+            
+      section
+        h3 Loops:
+        pre
+          code.language-markup.
+            {% for moose in monkey %}
+              ...
+            {% endfor %}
+            
+      section
+        h3 Variable assignment:
+        pre
+          code.language-markup.
+            {% assign moose = monkey %}
+            
+      section
+        h3 Liquid output:
+        pre
+          code.language-markup.
+            {{ page_title }}
+        
+      section
+        h3 Liquid objects:
+        pre
+          code.language-markup.
+            {{ product.title }}
+            {{ product.description }}
+            {{ product.images }} # is an array
+        
+      section
+        h3 Liquid filters:
+        pre
+          code.language-markup.
+            {{ 5 | times:5 }}
+            => 25
+            
+            {{ ‘my moose’ | replace: ‘moose’, ‘monkey’ }}
+            => my monkey
+            
+            {{ ‘moose/monkey’ | split: ‘/’ }}
+            => [‘moose’,’monkey’]
+        
+      section
+        h3 Filter chaining:
+        pre
+          code.language-markup.
+            {{ product.images | first | img_tag | link_to: product.url }}
+            
+            &lt;a href="/product/my-product"&gt;
+              &lt;img src="/images/my-product.jpg" alt="My product"&gt;
+            &lt;/a&gt;
+            
+      section
+        h2 Liquid documentation
+        ul
+          li: a(href='http://docs.shopify.com/themes/liquid-documentation/basics') http://docs.shopify.com/themes/liquid-documentation/basics
+          li: a(href='https://github.com/Shopify/liquid/wiki/Liquid-for-Designers') https://github.com/Shopify/liquid/wiki/Liquid-for-Designers
+          li: a(href='http://cheat.markdunkley.com/') http://cheat.markdunkley.com/
+          
+      section
+        h2 Theme structure
+        pre
+          code.language-markup.
+            theme
+            - assets
+            - config
+            - layout
+            - snippets
+            - template
+          
+      section
+        h2 Theme structure
+        ul
+          li Assets
+          li Config &amp; theme settings
+          li Layout
+          li Templates
+          li Snippets &amp; includes
+          
+      section
+        h2 Templates:
+        ul
+          li Home (index.liquid)
+          li Product (product.liquid)
+          li Page (page.liquid)
+          li etc.
+          
+      section
+        h3 Snippets &amp; includes:
+        pre
+          code.language-markup.
+            {{ include ‘my_snippet’ }}
+          
+      section
+        h3 Snippets &amp; includes:
+        pre
+          code.language-markup.
+            {{ include ‘my_snippet’ with ‘moose’ }}
+            
+      section
+        h2 Workflow
+        ul
+          li
+          li Git
+          li Shopify theme gem
+          li Grunt
+          
+      section
+        h2 Liquid vs Sass
+          
+      section
+        h3 Escaping liquid inside sass:
+        pre
+          code.language-css.
+            body{
+             /* {% if settings.background-image %} */
+              background-image: url(#{'{{ settings.background-image | asset_url }}'});
+             /* {% else %} */
+              background: whitesmoke;
+             /* {% endif %} */
+            }
+            
+            /* {{ settings.custom-css | prepend: '*\/' | append: '\/*' | remove: '\' }} */
+            
+            /* {% if settings.custom-css %}
+              {{ settings.custom-css | prepend: '*\/' | append: '\/*' | remove: '\' }}
+            {% endif %} */
+        small: em: a(href='https://gist.github.com/stewartknapman/8346708') https://gist.github.com/stewartknapman/8346708
+        
+      section
+        h2 Liquid <3 Sass
+        
+      section
+        h2 Shopify partners program
+        h3: a(href='http://www.shopify.com/partners') www.shopify.com/partners
+        
+      section
+        h2 Thanks!
+        h3: a(:http://www.twitter.com/stewartknapman) @stewartknapman
+        small: em Slides by Bespoke.js
 
     script(src='build/build.js')
